@@ -1,41 +1,82 @@
-## Installation
+CFScanner
 
-```bash
+Cloudflare IP Scanner & V2RayNG Config Generator for Android Termux
+
+Features
+
+✅ Download official Cloudflare IPv4 ranges
+
+✅ Generate random Cloudflare IPs
+
+✅ Multi-threaded scanning
+
+✅ Save Top 50 fastest endpoints
+
+✅ Generate V2RayNG configs automatically
+
+✅ Interactive menu
+
+✅ Android Termux compatible
+
+---
+
+Installation
+
 pkg update -y
+
 pkg install git python -y
 
 git clone https://github.com/pars1500/cfscanner.git
 
 cd cfscanner
-```
 
-## Run Scanner
+bash install.sh
 
-```bash
+---
+
+Run Application
+
 python app.py
-```
 
-## Output Files
+---
+
+Output Files
 
 Scanner Results:
 
-```text
 /sdcard/Download/good_cf.txt
-```
 
 Generated Configs:
 
-```text
 /sdcard/Download/generated_configs.txt
-```
 
-## Menu
+---
 
-```text
+Menu
+
 1. Scan Cloudflare IPs
 2. Generate V2RayNG Configs
 3. Show Output Files
 4. Show Project Files
 5. About
 0. Exit
-```
+
+---
+
+Persian Documentation
+
+For Persian users:
+
+README_FA.md
+
+---
+
+License
+
+MIT License
+
+---
+
+Author
+
+pars1500
