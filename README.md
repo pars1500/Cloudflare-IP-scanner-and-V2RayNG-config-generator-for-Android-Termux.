@@ -28,12 +28,11 @@ pkg install git python -y
 
 termux-setup-storage
 
-Press Allow when Android asks for permission.
+Allow the permission request when Android prompts you.
 
 4. Clone Repository
 
 git clone https://github.com/pars1500/cfscanner.git
-
 cd cfscanner
 
 5. Run Installer
@@ -48,11 +47,11 @@ python app.py
 
 Output Files
 
-Scanner Results:
+Scanner Results
 
 /sdcard/Download/good_cf.txt
 
-Generated Configs:
+Generated Configs
 
 /sdcard/Download/generated_configs.txt
 
