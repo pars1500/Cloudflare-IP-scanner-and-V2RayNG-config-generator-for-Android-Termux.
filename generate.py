@@ -2,19 +2,25 @@ from config_generator import read_good_ips, generate_v2ray_configs, save_configs
 
 
 def main():
-
     print("=" * 50)
     print("V2RayNG Config Generator")
     print("=" * 50)
 
     base_config = input("Paste your V2RayNG config: ")
 
+    count = input("How many configs do you want? default=20: ").strip()
+
+    if count == "":
+        count = 20
+    else:
+        count = int(count)
+
     ips = read_good_ips("/sdcard/Download/good_cf.txt")
 
     configs = generate_v2ray_configs(
         base_config,
         ips,
-        limit=20
+        limit=count
     )
 
     save_configs(
