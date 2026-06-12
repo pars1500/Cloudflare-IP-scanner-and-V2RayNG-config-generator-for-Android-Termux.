@@ -1,77 +1,132 @@
 import os
+import time
+
 from main import main as run_scanner
 from generate import main as run_generator
+
+
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+CYAN = "\033[96m"
+RED = "\033[91m"
+RESET = "\033[0m"
+BOLD = "\033[1m"
 
 
 def clear_screen():
     os.system("clear")
 
 
-def show_banner():
-    print("=" * 50)
-    print("CFScanner for Termux")
-    print("Cloudflare IP Scanner & V2RayNG Generator")
-    print("=" * 50)
+def pause():
+    input(f"\n{YELLOW}Press Enter to return to menu...{RESET}")
 
 
-def show_menu():
+def banner():
+    print(f"{CYAN}{'=' * 56}{RESET}")
+    print(f"{BOLD}{GREEN}                 CFSCANNER v1.1{RESET}")
+    print(f"{CYAN}      Cloudflare Scanner for Android Termux{RESET}")
+    print(f"{CYAN}     IP Scanner + V2RayNG Config Generator{RESET}")
+    print(f"{CYAN}{'=' * 56}{RESET}")
+
+
+def menu():
     print()
-    print("[1] Scan Cloudflare IPs")
-    print("[2] Generate V2RayNG Configs")
-    print("[3] Open Output Folder")
-    print("[4] Show Files")
-    print("[0] Exit")
+    print(f"{GREEN}[1]{RESET} Scan Cloudflare IPs")
+    print(f"{GREEN}[2]{RESET} Generate V2RayNG Configs")
+    print(f"{GREEN}[3]{RESET} Show Output Files")
+    print(f"{GREEN}[4]{RESET} Show Project Files")
+    print(f"{GREEN}[5]{RESET} About")
+    print(f"{RED}[0]{RESET} Exit")
     print()
 
 
-def open_output_folder():
-    print("Output files:")
-    print("/sdcard/Download/good_cf.txt")
-    print("/sdcard/Download/generated_configs.txt")
+def show_output_files():
+    print(f"{BOLD}Output Files:{RESET}\n")
+
+    files = [
+        "/sdcard/Download/good_cf.txt",
+        "/sdcard/Download/generated_configs.txt",
+    ]
+
+    for file_path in files:
+        if os.path.exists(file_path):
+            size = os.path.getsize(file_path)
+            print(f"{GREEN}[OK]{RESET} {file_path}  ({size} bytes)")
+        else:
+            print(f"{RED}[NOT FOUND]{RESET} {file_path}")
 
 
-def show_files():
+def show_project_files():
+    print(f"{BOLD}Project Files:{RESET}\n")
     os.system("ls -lh")
+
+
+def about():
+    print(f"{BOLD}CFScanner v1.1{RESET}\n")
+    print("A Termux-friendly Cloudflare IP scanner and V2RayNG config generator.")
     print()
-    os.system("ls -lh /sdcard/Download/good_cf.txt 2>/dev/null")
-    os.system("ls -lh /sdcard/Download/generated_configs.txt 2>/dev/null")
+    print("Features:")
+    print("- Fetch official Cloudflare IPv4 ranges")
+    print("- Generate random Cloudflare IPs")
+    print("- Scan common Cloudflare ports")
+    print("- Filter IPs by latency")
+    print("- Save good results to Android Downloads")
+    print("- Generate fast V2RayNG configs from the best IPs")
+    print()
+    print("GitHub:")
+    print("https://github.com/pars1500/cfscanner")
 
 
 def main():
     while True:
         clear_screen()
-        show_banner()
-        show_menu()
+        banner()
+        menu()
 
-        choice = input("Select an option: ").strip()
+        choice = input(f"{BOLD}Select an option: {RESET}").strip()
 
         if choice == "1":
             clear_screen()
+            banner()
+            print(f"\n{YELLOW}Starting Cloudflare scan...{RESET}\n")
+            time.sleep(1)
             run_scanner()
-            input("\nPress Enter to return to menu...")
+            pause()
 
         elif choice == "2":
             clear_screen()
+            banner()
+            print(f"\n{YELLOW}Starting V2RayNG config generator...{RESET}\n")
+            time.sleep(1)
             run_generator()
-            input("\nPress Enter to return to menu...")
+            pause()
 
         elif choice == "3":
             clear_screen()
-            open_output_folder()
-            input("\nPress Enter to return to menu...")
+            banner()
+            show_output_files()
+            pause()
 
         elif choice == "4":
             clear_screen()
-            show_files()
-            input("\nPress Enter to return to menu...")
+            banner()
+            show_project_files()
+            pause()
+
+        elif choice == "5":
+            clear_screen()
+            banner()
+            about()
+            pause()
 
         elif choice == "0":
-            print("Goodbye.")
+            clear_screen()
+            print(f"{GREEN}Goodbye!{RESET}")
             break
 
         else:
-            print("Invalid option.")
-            input("\nPress Enter to return to menu...")
+            print(f"{RED}Invalid option. Please try again.{RESET}")
+            time.sleep(1)
 
 
 if __name__ == "__main__":
