@@ -1,12 +1,26 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
+
+clear
+
+echo "========================================"
+echo "         CFScanner Installer"
+echo "========================================"
+echo ""
 
 pkg update -y
-pkg install python git -y
+
+pkg install python -y
+
 termux-setup-storage
 
-echo "Installation completed."
-echo "Run scanner with:"
-echo "python main.py"
+chmod +x *.py
+
 echo ""
-echo "Generate configs with:"
-echo "python generate.py"
+echo "========================================"
+echo " Installation Completed Successfully"
+echo "========================================"
+echo ""
+echo "Run the application with:"
+echo ""
+echo "python app.py"
+echo ""
