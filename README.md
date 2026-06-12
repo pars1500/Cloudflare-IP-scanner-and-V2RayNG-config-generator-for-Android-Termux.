@@ -65,7 +65,7 @@ Menu
 
 Persian Documentation
 
-For Persian users:
+See:
 
 README_FA.md
 
