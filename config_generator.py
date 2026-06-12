@@ -12,13 +12,18 @@ def read_good_ips(file_path="/sdcard/Download/good_cf.txt"):
                 continue
 
             ip_port = line.split()[0]
+            ping_text = line.split("ping=")[1].replace("ms", "")
+
             ip, port = ip_port.split(":")
+            ping = int(ping_text)
 
             results.append({
                 "ip": ip,
-                "port": port
+                "port": port,
+                "ping": ping
             })
 
+    results.sort(key=lambda x: x["ping"])
     return results
 
 
@@ -26,9 +31,10 @@ def generate_v2ray_configs(base_config, ip_list, limit=20):
     configs = []
 
     parsed = urlparse(base_config)
+    username = parsed.username
 
     for index, item in enumerate(ip_list[:limit], start=1):
-        new_netloc = f"{item['ip']}:{item['port']}"
+        new_netloc = f"{username}@{item['ip']}:{item['port']}"
 
         new_config = urlunparse((
             parsed.scheme,
@@ -36,7 +42,7 @@ def generate_v2ray_configs(base_config, ip_list, limit=20):
             parsed.path,
             parsed.params,
             parsed.query,
-            f"CF-{index}-{item['ip']}-{item['port']}"
+            f"FAST-{index}-{item['ip']}-{item['port']}-{item['ping']}ms"
         ))
 
         configs.append(new_config)
