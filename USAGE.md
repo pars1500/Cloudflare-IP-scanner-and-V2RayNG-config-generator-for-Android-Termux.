@@ -1,28 +1,14 @@
-Usage Guide
+# CFScanner Quick Start Guide
 
-Install
+## Installation
 
+```bash
 pkg update -y
-pkg install python git -y
+pkg install git python -y
 
-git clone https://github.com/pars1500/Cloudflare-IP-scanner-and-V2RayNG-config-generator-for-Android-Termux..git
+git clone https://github.com/pars1500/cfscanner.git
 
-cd Cloudflare-IP-scanner-and-V2RayNG-config-generator-for-Android-Termux.
+cd cfscanner
 
 bash install.sh
 
-Scan Cloudflare IPs
-
-python main.py
-
-Output:
-
-/sdcard/Download/good_cf.txt
-
-Generate V2RayNG Configs
-
-python generate.py
-
-Output:
-
-/ sdcard/Download/generated_configs.txt
