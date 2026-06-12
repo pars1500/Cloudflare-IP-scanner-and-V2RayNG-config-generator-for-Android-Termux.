@@ -16,20 +16,20 @@ Features
 
 Installation
 
-pkg update -y
-pkg install git python -y
+##pkg update -y
+##pkg install git python -y
 
-git clone https://github.com/pars1500/cfscanner.git
+##git clone https://github.com/pars1500/cfscanner.git
 
-cd cfscanner
+##cd cfscanner
 
-bash install.sh
+##bash install.sh
 
 ---
 
 Run Application
 
-python app.py
+##python app.py
 
 ---
 
