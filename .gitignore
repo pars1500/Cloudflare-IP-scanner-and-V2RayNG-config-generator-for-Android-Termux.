@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+good_cf.txt
+generated_configs.txt
+__pycache__/
+*.pyc
