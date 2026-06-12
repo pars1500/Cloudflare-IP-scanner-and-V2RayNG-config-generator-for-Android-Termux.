@@ -21,30 +21,41 @@ Installation
 ```bash
 pkg update -y && pkg upgrade -y
 ```
+
 2. Install Requirements
    
 ```bash
 pkg install git python -y
 ```
+
 3. Allow Storage Access
+
 ```bash
 termux-setup-storage
 ```
+
 Allow the permission request when Android prompts you.
 
 4. Clone Repository
+
+   
 ```bash
 git clone https://github.com/pars1500/cfscanner.git
 cd cfscanner
 ```
 5. Run Installer
+
+   
 ```bash
 bash install.sh
 ```
+
 6. Start Application
 
+   
+```bash
 python app.py
-
+```
 ---
 
 Output Files
@@ -84,6 +95,3 @@ MIT License
 
 ---
 
-Author
-
-pars1500
