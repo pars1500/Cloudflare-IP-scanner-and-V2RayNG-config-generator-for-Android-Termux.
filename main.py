@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import math
 
 from cloudflare_ranges import get_cloudflare_ipv4_ranges
 from ip_generator import generate_random_ips
@@ -16,7 +17,6 @@ BOLD = "\033[1m"
 MIN_LATENCY = 100
 MAX_LATENCY = 300
 
-COUNT_PER_RANGE = 334
 MAX_WORKERS = 200
 TOP_RESULTS = 50
 
@@ -32,12 +32,32 @@ def save_results(results):
     print(f"\n{GREEN}Results saved:{RESET} {OUTPUT_FILE}")
 
 
+def choose_scan_size():
+    print(f"{YELLOW}Choose scan size:{RESET}")
+    print("[1] 1000 IPs - Fast")
+    print("[2] 5000 IPs - Recommended")
+    print("[3] 10000 IPs - Deep scan")
+    print()
+
+    choice = input("Select option, default=2: ").strip()
+
+    if choice == "1":
+        return 1000
+    elif choice == "3":
+        return 10000
+    else:
+        return 5000
+
+
 def main():
 
     print(f"{CYAN}{'=' * 60}{RESET}")
-    print(f"{BOLD}{GREEN}CFScanner v1.2{RESET}")
+    print(f"{BOLD}{GREEN}CFScanner v1.3{RESET}")
     print(f"{CYAN}{'=' * 60}{RESET}")
 
+    scan_size = choose_scan_size()
+
+    print()
     print("Loading Cloudflare ranges...")
 
     ranges = get_cloudflare_ipv4_ranges()
@@ -46,10 +66,14 @@ def main():
         print(f"{RED}No Cloudflare ranges found.{RESET}")
         return
 
+    count_per_range = math.ceil(scan_size / len(ranges))
+
     ips = generate_random_ips(
         ranges,
-        count_per_range=COUNT_PER_RANGE
+        count_per_range=count_per_range
     )
+
+    ips = ips[:scan_size]
 
     print(f"Target scan size: {len(ips)} IPs")
     print(f"Best results to save: {TOP_RESULTS}")
