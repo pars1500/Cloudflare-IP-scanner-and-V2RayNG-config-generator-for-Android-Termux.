@@ -222,3 +222,5 @@ good_cf.txt
 generated_configs.txt
 __pycache__/
 *.pyc
+good_cf.txt
+generated_configs.txt
